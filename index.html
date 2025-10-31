@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countify - Counter App</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <h1>✨ Countify ✨</h1>
+    <h2 id="count">0</h2>
+
+    <div>
+      <button class="decrement" id="decrementBtn">−</button>
+      <button class="increment" id="incrementBtn">+</button>
+    </div>
+
+    <input type="number" id="customInput" placeholder="Enter number..." />
+    <input type="number" id="targetInput" placeholder="🎯 Set Target..." />
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div>
+      <button class="save" id="saveBtn">💾 Save</button>
+      <button class="delete" id="deleteBtn">🗑 Delete</button>
+      <button class="reset" id="resetBtn">🔄 Reset</button>
+      <button class="theme-toggle" id="themeBtn">🌙</button>
+    </div>
+
+    <div class="history">
+      <h3>📜 History</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script>
+    let count = 0;
+    let target = 0;
+    const countDisplay = document.getElementById("count");
+    const input = document.getElementById("customInput");
+    const targetInput = document.getElementById("targetInput");
+    const progressBar = document.getElementById("progressBar");
+    const historyList = document.getElementById("historyList");
+
+    const clickSound = new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3");
+
+    // Load from localStorage
+    window.onload = () => {
+      const savedCount = localStorage.getItem("savedCount");
+      const savedHistory = JSON.parse(localStorage.getItem("countHistory")) || [];
+      const savedTheme = localStorage.getItem("theme");
+
+      if (savedCount) count = parseInt(savedCount);
+      if (savedTheme === "dark") document.body.classList.add("dark-mode");
+      updateDisplay();
+      savedHistory.forEach(item => addToHistory(item));
+    };
+
+    // Update Display
+    function updateDisplay() {
+      countDisplay.textContent = count;
+      countDisplay.classList.add("animate");
+      setTimeout(() => countDisplay.classList.remove("animate"), 300);
+      updateProgress();
+      localStorage.setItem("savedCount", count); // Auto-save
+    }
+
+    function updateProgress() {
+      if (target > 0) {
+        const progress = Math.min((count / target) * 100, 100);
+        progressBar.style.width = progress + "%";
+      } else {
+        progressBar.style.width = "0%";
+      }
+    }
+
+    function addToHistory(value) {
+      const li = document.createElement("li");
+      li.textContent = `Saved count: ${value}`;
+      historyList.appendChild(li);
+    }
+
+    // Increment
+    document.getElementById("incrementBtn").addEventListener("click", () => {
+      const val = parseInt(input.value) || 1;
+      count += val;
+      clickSound.play();
+      updateDisplay();
+    });
+
+    // Decrement
+    document.getElementById("decrementBtn").addEventListener("click", () => {
+      const val = parseInt(input.value) || 1;
+      if (count - val >= 0) {
+        count -= val;
+        clickSound.play();
+        updateDisplay();
+      }
+    });
+
+    // Set target
+    targetInput.addEventListener("change", () => {
+      target = parseInt(targetInput.value) || 0;
+      updateProgress();
+    });
+
+    // Reset
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      count = 0;
+      updateDisplay();
+      historyList.innerHTML = "";
+      localStorage.removeItem("countHistory");
+    });
+
+    // Save
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      let history = JSON.parse(localStorage.getItem("countHistory")) || [];
+      history.push(count);
+      localStorage.setItem("countHistory", JSON.stringify(history));
+      addToHistory(count);
+      alert("✅ Count saved!");
+    });
+
+    // Delete
+    document.getElementById("deleteBtn").addEventListener("click", () => {
+      localStorage.removeItem("savedCount");
+      localStorage.removeItem("countHistory");
+      historyList.innerHTML = "";
+      alert("🗑 All saved data cleared!");
+    });
+
+    // Theme toggle
+    document.getElementById("themeBtn").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+    });
+  </script>
+
+</body>
+</html>

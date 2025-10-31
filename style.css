@@ -1,0 +1,148 @@
+body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+      transition: background 0.5s, color 0.5s;
+      color: #333;
+      overflow-x: hidden;
+      padding: 10px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      transition: background 0.5s, box-shadow 0.5s;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    #count {
+      font-size: 4rem;
+      margin: 20px 0;
+      font-weight: bold;
+      transition: transform 0.3s ease, color 0.3s;
+    }
+
+    #count.animate {
+      transform: scale(1.2);
+      color: #4CAF50;
+    }
+
+    /* === Buttons === */
+    button {
+      padding: 12px 18px;
+      margin: 8px 5px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s;
+      color: white;
+      min-width: 110px;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    .increment { background-color: #4CAF50; }
+    .decrement { background-color: #f44336; }
+    .reset { background-color: #ff9800; }
+    .save { background-color: #3f51b5; }
+    .delete { background-color: #9c27b0; }
+    .theme-toggle { background-color: #333; }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      border: none;
+      border-radius: 8px;
+      margin-top: 15px;
+      text-align: center;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    /* === Progress Bar === */
+    .progress-container {
+      margin-top: 15px;
+      width: 100%;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 15px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4CAF50, #8BC34A);
+      transition: width 0.3s ease;
+    }
+
+    /* === History Log === */
+    .history {
+      margin-top: 20px;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #444;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .history h3 {
+      margin-bottom: 5px;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    /* === Dark Mode === */
+    .dark-mode {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #f4f4f4;
+    }
+
+    .dark-mode .container {
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .dark-mode button.theme-toggle {
+      background-color: #f4f4f4;
+      color: #222;
+    }
+    
+    /* === Dark Mode History Fix === */
+    .dark-mode .history,
+    .dark-mode .history h3,
+    .dark-mode .history li {
+    color: #ffffff;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      #count { font-size: 3rem; }
+      button { font-size: 0.9rem; min-width: 90px; padding: 10px 12px; }
+      .container { padding: 30px 20px; }
+    }
+
+    @media (max-width: 400px) {
+      h1 { font-size: 1.5rem; }
+      #count { font-size: 2.5rem; }
+      input { width: 90%; }
+    }
+ 
