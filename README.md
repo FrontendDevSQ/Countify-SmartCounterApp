@@ -4,7 +4,11 @@
 
 🔗 **[Live Demo](https://countify-smart-counter-app.vercel.app/)**
 
-![App Preview](https://github.com/user-attachments/assets/94911739-df06-4e66-8ef9-a11aac2f4adf)
+## Light mode
+<img width="1897" height="907" alt="image" src="https://github.com/user-attachments/assets/416ac5bd-a801-4dfb-9a5a-d35a3e6304b0" />
+
+## Dark mode
+<img width="1901" height="902" alt="image" src="https://github.com/user-attachments/assets/2c61bffa-5206-4532-a61b-faae8049a04a" />
 
 ---
 
