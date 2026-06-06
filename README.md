@@ -41,10 +41,10 @@
 
 ```bash
 # Clone the repo
-git clone https://github.com/FrontendDevSQ/countify-smart-counter.git
+git clone https://github.com/FrontendDevSQ/Countify-SmartCounterApp.git
 
 # Open in browser
-cd countify-smart-counter
+cd Countify-SmartCounterApp
 open index.html
 ```
 No dependencies. No build step. Just open and run.
@@ -57,7 +57,7 @@ No dependencies. No build step. Just open and run.
 countify-smart-counter/
 ├── index.html
 ├── style.css
-└── script.js
+
 ```
 
 ---
